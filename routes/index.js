@@ -6,7 +6,7 @@ const numberGenerator = require('../numberGenerator');
 
 /* GET list of cards */
 router.get('/cards', function(req, res, next){
-  if(!req.query.number) {
+  if(!req.query.sets) {
     queries.getAll()
     .then(function(cards) {
       res.status(200).json(cards);
@@ -17,7 +17,7 @@ router.get('/cards', function(req, res, next){
   }
   else {
     //FIXME: Fails test
-    let sets = numberGenerator.randomSetNumbers(req.query.number)
+    let sets = numberGenerator.randomSetNumbers(req.query.sets)
     queries.getNumberCards(sets)
     .then(cards => {
       res.status(200).json(cards);

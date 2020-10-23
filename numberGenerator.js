@@ -1,5 +1,5 @@
 function randomSetNumbers (num) {
-    let array = createNumArray(16);
+    let array = createNumArray(8);
     //shuffles the array
     for(let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * i)

@@ -10,11 +10,7 @@ function getAll() {
 
 function getNumberCards(setArray) {
     //FIXME: Grab the cards in the sets given by the array
-    return Cards().select('*').where('set', setArray[0]).modify(function(queryBuilder) {
-        for (let i = 1; i < setArray.length; i++){
-            queryBuilder.orWhere('set', setArray[i])
-        }
-    });
+    return Cards().select('*').whereIn('set', setArray);
 }
 
 module.exports = {
