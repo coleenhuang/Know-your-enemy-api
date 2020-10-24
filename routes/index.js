@@ -16,7 +16,9 @@ router.get('/cards', function(req, res, next){
     });
   }
   else {
-    //FIXME: Fails test
+    if(req.query.sets<= 0 || req.query.sets > 8){
+      res.status(400).json({error: 'Please enter an integer between 0 and 8'})
+    }
     let sets = numberGenerator.randomSetNumbers(req.query.sets)
     queries.getNumberCards(sets)
     .then(cards => {

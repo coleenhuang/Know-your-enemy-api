@@ -55,9 +55,44 @@ describe('API Routes', function(){
                 res.should.be.json;
                 res.body.should.be.a('array');
                 res.body.length.should.equal(2);
+                //Makes sure the two cards belong to the same set
+                res.body[0].set.should.equal(res.body[1].set);
                 done();
             });
         });   
+    })
+
+    describe('GET /api/v1/cards?sets=2', function(){
+        it('should return four cards', function(done) {
+            chai.request(server)
+            .get('/api/v1/cards?sets=2')
+            .end(function(err, res){
+                res.should.have.status(200);
+                res.should.be.json;
+                res.body.should.be.a('array');
+                res.body.length.should.equal(4);
+                done();
+            });
+        });   
+    })
+
+    describe('GET /api/v1/cards?sets errors', function() {
+        it('should return an error when sets > 8', function(done) {
+            chai.request(server)
+            .get('/api/v1/cards?sets=10')
+            .end(function(err, res){
+                res.should.have.status(400);
+                done()
+            })
+        })
+        it('should return an error when sets <= 0', function(done) {
+            chai.request(server)
+            .get('/api/v1/cards?sets=0')
+            .end(function(err, res){
+                res.should.have.status(400);
+                done()
+            })
+        })
     })
     
 })
