@@ -9,7 +9,7 @@ function getAll() {
 }
 
 function getNumberCards(setArray) {
-    //FIXME: Grab the cards in the sets given by the array
+    //Grab the cards in the sets given by the array
     return Cards().select('*').whereIn('set', setArray);
 }
 
