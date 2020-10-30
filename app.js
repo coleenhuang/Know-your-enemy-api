@@ -12,6 +12,7 @@ var users = require('./routes/users');
 var app = express();
 const helmet = require('helmet');
 const compression = require('compression');
+const cors = require('cors');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -28,6 +29,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(helmet);
 app.use(compression);
+app.use(cors());
 
 app.use('/api/v1', routes);
 app.use('/users', users);
